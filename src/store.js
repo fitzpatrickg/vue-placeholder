@@ -7,10 +7,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     posts: null,
+    comments: null,
   },
   mutations: {
     updatePosts(state, posts) {
       state.posts = posts;
+    },
+    updateComments(state, comments) {
+      state.comments = comments;
     },
   },
   actions: {
@@ -23,10 +27,18 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-  },
-  getters: {
-    getPostTitles(state) {
-      return state.posts.map((post) => post.title);
+    getComments({ commit }, id) {
+      return new Promise((resolve, reject) => {
+        axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
+          .then((comments) => {
+            commit('updateComments', comments.data);
+            resolve(comments.data);
+          })
+          .catch((err) => {
+            console.log(err);
+            reject(err);
+          });
+      });
     },
   },
 });
