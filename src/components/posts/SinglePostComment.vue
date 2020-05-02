@@ -1,11 +1,9 @@
 <template>
-    <v-row>
-        <v-col cols="12">
-            <h4>{{ this.name }}</h4>
-            <p>{{ this.body }}</p>
-            <span>{{ this.email }}</span>
-        </v-col>
-    </v-row>
+        <v-card cols="12">
+            <v-card-title>{{ this.name }}</v-card-title>
+            <v-card-subtitle>{{ this.email }}</v-card-subtitle>
+            <v-card-text>{{ this.body }}</v-card-text>
+        </v-card>
 </template>
 
 <script>

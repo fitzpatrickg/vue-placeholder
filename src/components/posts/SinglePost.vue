@@ -3,16 +3,14 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.body }}</p>
 
-    <v-card :key="comment.id" v-for="comment in comments">
-      <v-row>
-        <v-col cols="12">
-          <SinglePostComment
-            :name="comment.name"
-            :body="comment.body"
-            :email="comment.email" />
-        </v-col>
-      </v-row>
-    </v-card>
+    <v-row :key="comment.id" v-for="comment in comments">
+      <v-col cols="12">
+        <SinglePostComment
+          :name="comment.name"
+          :body="comment.body"
+          :email="comment.email" />
+      </v-col>
+    </v-row>
 </v-content>
 </template>
 

@@ -27,6 +27,7 @@ export default {
     PostListRow,
   },
   created() {
+    // get posts from API when component is created
     this.$store.dispatch('getPosts');
   },
   computed: {

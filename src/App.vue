@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-row>
-      <v-col cols="12">
-        <h1>Future Nav</h1>
-      </v-col>
-    </v-row>
-    <v-content>
+    <v-content id="container">
+      <v-row>
+        <v-col cols="12">
+          <h1>Future Nav</h1>
+        </v-col>
+      </v-row>
       <router-view/>
     </v-content>
   </v-app>
@@ -25,8 +25,12 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#container {
+  width: 80%;
+  margin: 0 auto;
 }
 </style>

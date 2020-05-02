@@ -31,7 +31,9 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`)
           .then((comments) => {
+            // save comments to state
             commit('updateComments', comments.data);
+            // return comments in promise immediately, to be used on SinlePost component load
             resolve(comments.data);
           })
           .catch((err) => {
