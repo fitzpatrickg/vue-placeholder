@@ -8,8 +8,10 @@
         :key="post.id"
         v-for="post in postList"
         cols="12">
-        <PostListRow
-          :title="post.title"/>
+        <router-link :to="`/post/${post.id}`" exact>
+          <PostListRow
+            :title="post.title"/>
+        </router-link>
       </v-col>
     </v-row>
   </v-container>

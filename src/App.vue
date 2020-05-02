@@ -6,21 +6,14 @@
       </v-col>
     </v-row>
     <v-content>
-      <PostList />
+      <router-view/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import PostList from './components/posts/PostList.vue';
-
 export default {
   name: 'App',
-
-  components: {
-    PostList,
-  },
-
   data: () => ({
     //
   }),
