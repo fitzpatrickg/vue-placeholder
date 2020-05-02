@@ -6,9 +6,10 @@
       </v-col>
       <v-col
         :key="post.id"
-        v-for="post in postList"
+        v-for="post in posts"
         cols="12">
-        <router-link :to="`/post/${post.id}`" exact>
+        <router-link
+          :to="`/post/${post.id}`" exact>
           <PostListRow
             :title="post.title"/>
         </router-link>
@@ -18,7 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import PostListRow from './PostListRow.vue';
 
 export default {
@@ -27,18 +27,12 @@ export default {
     PostListRow,
   },
   created() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((posts) => {
-        this.postList = posts.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.$store.dispatch('getPosts');
   },
-  data() {
-    return {
-      postList: [],
-    };
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
   },
 };
 </script>
