@@ -4,15 +4,12 @@
       <v-col cols="12">
         <h1>Hello from PostList</h1>
       </v-col>
-      <v-col
-        :key="post.id"
-        v-for="post in posts"
-        cols="12">
-        <router-link
-          :to="`/post/${post.id}`" exact>
+      <v-col :key="post.id" v-for="post in postTitles" cols="12">
           <PostListRow
-            :title="post.title"/>
-        </router-link>
+            :id="post.id"
+            :title="post.title"
+            :username="post.username"
+            :userId="post.userId" />
       </v-col>
     </v-row>
   </v-container>
@@ -26,13 +23,9 @@ export default {
   components: {
     PostListRow,
   },
-  created() {
-    // get posts from API when component is created
-    this.$store.dispatch('getPosts');
-  },
   computed: {
-    posts() {
-      return this.$store.state.posts;
+    postTitles() {
+      return this.$store.getters.associateUserAndPost;
     },
   },
 };

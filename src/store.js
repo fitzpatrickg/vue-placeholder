@@ -6,8 +6,33 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    posts: null,
-    comments: null,
+    posts: [],
+    comments: [],
+    users: [],
+  },
+  getters: {
+    associateUserAndPost(state) {
+      const usersAndPosts = state.users.map((user) => ({
+        id: user.id,
+        username:
+          user.username,
+      }));
+
+      state.posts.forEach((post) => {
+        for (let i = 0; i < usersAndPosts.length; i++) {
+          if (post.userId === usersAndPosts[i].id) {
+            usersAndPosts[i].title = post.title;
+            usersAndPosts[i].id = post.id;
+            usersAndPosts[i].userId = post.userId;
+            break;
+          }
+        }
+      });
+      return usersAndPosts;
+    },
+    getUserById(state, id) {
+      return state.users.find((user) => user.id === parseInt(id, 10));
+    },
   },
   mutations: {
     updatePosts(state, posts) {
@@ -15,6 +40,9 @@ export default new Vuex.Store({
     },
     updateComments(state, comments) {
       state.comments = comments;
+    },
+    updateUsers(state, users) {
+      state.users = users;
     },
   },
   actions: {
@@ -41,6 +69,12 @@ export default new Vuex.Store({
             reject(err);
           });
       });
+    },
+    getUsers({ commit }) {
+      axios.get('https://jsonplaceholder.typicode.com/users')
+        .then((users) => {
+          commit('updateUsers', users.data);
+        });
     },
   },
 });

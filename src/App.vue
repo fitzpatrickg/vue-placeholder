@@ -14,9 +14,12 @@
 <script>
 export default {
   name: 'App',
-  data: () => ({
-    //
-  }),
+  beforeCreate() {
+    // get posts from API when component is created
+    this.$store.dispatch('getPosts');
+    // get users from API when component is created
+    this.$store.dispatch('getUsers');
+  },
 };
 </script>
 

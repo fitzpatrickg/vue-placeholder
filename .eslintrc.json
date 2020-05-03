@@ -21,6 +21,7 @@
     "rules": {
         "no-console": "off",
         "linebreak-style": "warn",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-plusplus": "off"
     }
 }
